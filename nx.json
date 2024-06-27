@@ -61,8 +61,16 @@
     "@nx/angular:application": {
       "e2eTestRunner": "playwright",
       "linter": "eslint",
-      "style": "scss",
+      "style": "less",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "directory": "libs"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   },
   "nxCloudAccessToken": "YWU4MDljYzItZmQyNi00YTMwLWFmZWMtMTIyYjhlYWZkMDBjfHJlYWQtd3JpdGU="

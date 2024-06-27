@@ -1,0 +1,52 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+:host {
+  overflow: hidden;
+}
+
+header {
+  hr {
+    width: 0;
+  }
+}
+
+aside.fixed {
+  position: fixed;
+  top: 48px;
+  height: calc(100vh - 3rem);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: end;
+  overflow: hidden;
+}
+
+.min-width-wrapper {
+  @media @tui-mobile {
+    min-width: calc(100vw - 3rem);
+  }
+}
+
+.content {
+  width: 100%;
+  max-width: calc(100vw - 13.75rem);
+  transition: all 0.3s ease-in-out;
+
+  &&&:before {
+    top: 3rem;
+    position: fixed;
+    transition: width 0.3s ease-in-out;
+    width: calc(100vw - 13.75rem);
+  }
+
+  &.full-size {
+    max-width: calc(100vw - 3rem);
+
+    &&&:before {
+      top: 3rem;
+      position: fixed;
+      width: calc(100% - 3rem);
+    }
+  }
+}

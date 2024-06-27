@@ -1,0 +1,9 @@
+@if (dark()) {
+  <tui-theme-night />
+}
+
+<tui-root [tuiMode]="dark() ? 'onDark' : 'onLight'">
+  <tsaitech-navigation [(dark)]="dark">
+    <router-outlet />
+  </tsaitech-navigation>
+</tui-root>

@@ -1,0 +1,45 @@
+@if (isBrowser) {
+  <div class="editors">
+    <h2 tuiTitle>Code editor (Typescript):</h2>
+
+    <ui-code-editor
+      class="code-editor"
+      [(code)]="code"
+      language="typescript"
+    />
+
+    <h2 tuiTitle>Template editor:</h2>
+
+    <ui-code-editor
+      class="template-editor"
+      [(code)]="template"
+      language="html"
+    />
+
+    <h2 tuiTitle>Styles editor (css):</h2>
+
+    <ui-code-editor
+      class="styles-editor"
+      [(code)]="styles"
+      language="css"
+    />
+
+    <button
+      class="tui-space_top-8"
+      tuiButton
+      [appearance]="'accent'"
+      (click)="compileAndRun()"
+    >Compile and Run</button>
+
+    <tool-dynamic-component
+      #refToTheComponent
+      class="tui-space_top-16"
+    />
+  </div>
+
+  <div class="footer tui-space_top-16">
+    Showcase for upwork
+  </div>
+} @else {
+  <p>This content accessible only from a browser.</p>
+}

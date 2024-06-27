@@ -1,0 +1,72 @@
+<header tuiNavigationHeader>
+  <button
+    appearance="secondary"
+    iconLeft="tuiIconGrid"
+    tuiIconButton
+    (click)="expanded.set(!expanded())"
+  >Menu</button>
+
+  <button
+    class="title"
+    tuiNavigationLogo
+    tuiButton
+    appearance="flat"
+    [style.max-width]="'none'"
+    [routerLink]="['/']"
+  >
+    <tui-icon icon="tuiIconCpu" />
+    <span>TsaiTech — fullstack development</span>
+  </button>
+
+  <hr class="divider" />
+
+  <tsaitech-theme-switcher [(dark)]="dark" />
+</header>
+
+<aside class="fixed" [tuiNavigationAside]="expanded()">
+  <header>
+    <button
+      iconLeft="tuiIconHome"
+      tuiButton
+      [routerLink]="['/']"
+    >
+      <span tuiFade>Homepage</span>
+    </button>
+  </header>
+
+  <button iconLeft="tuiIconMonitor" tuiButton>
+    <span tuiFade>Showcases</span>
+  </button>
+
+  <hr />
+
+  <button
+    iconLeft="https://www.vectorlogo.zone/logos/upwork/upwork-icon.svg"
+    tuiButton
+    [style.color]="'rgb(16, 138, 0)'"
+  >
+    <span tuiFade>Upwork profile</span>
+  </button>
+
+  <footer>
+    <button
+      tuiButton
+      [iconLeft]="expanded() ? 'tuiIconChevronLeft' : 'tuiIconChevronRight'"
+      (click)="expanded.set(!expanded())"
+    >
+      {{ expanded() ? 'Collapse' : 'Expand' }}
+    </button>
+  </footer>
+</aside>
+
+<div class="wrapper">
+  <main
+    class="content"
+    [class.full-size]="!expanded()"
+    tuiNavigationMain
+  >
+    <div class="min-width-wrapper">
+      <ng-content />
+    </div>
+  </main>
+</div>

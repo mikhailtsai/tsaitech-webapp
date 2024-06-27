@@ -1,3 +1,10 @@
 import { Route } from '@angular/router';
 
-export const appRoutes: Route[] = [];
+import { showcasesRoutes } from '@tsaitech/showcases';
+
+export const appRoutes: Route[] = [
+  {
+    path: '',
+    children: showcasesRoutes,
+  },
+];
