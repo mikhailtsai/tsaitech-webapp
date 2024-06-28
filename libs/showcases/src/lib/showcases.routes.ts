@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
 
-import { ShowcasesComponent, AngularRuntimeComponent } from './components';
+import {
+  ShowcasesComponent,
+  AngularRuntimeComponent,
+  ApryseWebViewerComponent,
+} from './components';
 
 export const showcasesRoutes: Routes = [
   {
     path: '',
-    component: ShowcasesComponent,
+    component: ApryseWebViewerComponent,
   },
   {
     path: 'angular-runtime',
