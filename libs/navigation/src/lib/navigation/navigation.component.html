@@ -10,12 +10,13 @@
     class="title"
     tuiNavigationLogo
     tuiButton
+    tuiHint
     appearance="flat"
     [style.max-width]="'none'"
     [routerLink]="['/']"
   >
     <tui-icon icon="tuiIconCpu" />
-    <span>TsaiTech — fullstack development</span>
+    <span>Mikhail Tsai — fullstack developer</span>
   </button>
 
   <hr class="divider" />
@@ -28,11 +29,17 @@
     <button
       iconLeft="tuiIconHome"
       tuiButton
+      tuiHint
+      tuiHintAside
       [routerLink]="['/']"
     >
-      <span tuiFade>Start here</span>
+      <span tuiFade>Homepage</span>
     </button>
+  </header>
 
+  <tsaitech-showcases-menu [expanded]="expanded()" />
+
+  <footer>
     <a
       iconLeft="https://www.vectorlogo.zone/logos/upwork/upwork-icon.svg"
       tuiButton
@@ -42,16 +49,7 @@
     >
       <span tuiFade>My upwork profile</span>
     </a>
-  </header>
 
-  <button iconLeft="tuiIconMonitor" tuiButton>
-    <span tuiFade>Showcases</span>
-  </button>
-
-  <hr />
-
-
-  <footer>
     <button
       tuiButton
       [iconLeft]="expanded() ? 'tuiIconChevronLeft' : 'tuiIconChevronRight'"
@@ -64,10 +62,12 @@
 
 <div class="wrapper">
   <main
+    tuiNavigationMain
     class="content"
     [class.full-size]="!expanded()"
-    tuiNavigationMain
   >
+    <tsaitech-breadcrumbs />
+
     <div class="min-width-wrapper">
       <ng-content />
     </div>

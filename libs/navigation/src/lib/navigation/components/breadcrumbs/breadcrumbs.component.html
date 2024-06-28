@@ -1,0 +1,11 @@
+@if (routes().length > 1) {
+  <tui-breadcrumbs>
+    @for (route of routes(); track route.route) {
+      <a
+        *tuiItem
+        tuiLink
+        [routerLink]="route.route"
+      >{{ route.name }}</a>
+    }
+  </tui-breadcrumbs>
+}

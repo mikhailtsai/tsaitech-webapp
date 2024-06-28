@@ -1,0 +1,42 @@
+<tui-hosted-dropdown
+  [canOpen]="!expanded()"
+  [content]="dropdowns"
+  [sided]="true"
+  [(open)]="showCaseOpen"
+>
+  <button
+    iconLeft="tuiIconMonitor"
+    [iconRight]="showCaseSubMenu() ? 'tuiIconChevronUp' : 'tuiIconChevronDown'"
+    tuiAppearance="flat"
+    tuiButton
+    tuiHint
+    tuiHintAside
+    (click)="showCaseSubMenu.set(expanded() && !showCaseSubMenu())"
+  >
+    Showcases
+  </button>
+</tui-hosted-dropdown>
+
+<ng-template #dropdowns>
+  <tui-data-list size="s">
+    @for (showcase of showcases; track showcase.path) {
+      <button
+        tuiOption
+        [routerLink]="['/', 'showcases', showcase.path]"
+      >{{ showcase.name }}</button>
+    }
+  </tui-data-list>
+</ng-template>
+
+<tui-expand [expanded]="expanded() && showCaseSubMenu()">
+  @for (showcase of showcases; track showcase.path) {
+    <button
+      tuiButton
+      [tuiHint]="showcase.name"
+      tuiHintDirection="right"
+      [routerLink]="['/', 'showcases', showcase.path]"
+    >
+      <span tuiFade>{{ showcase.name }}</span>
+    </button>
+  }
+</tui-expand>

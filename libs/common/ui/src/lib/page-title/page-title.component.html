@@ -1,0 +1,13 @@
+<h1 tuiTitle>
+  <ng-content />
+
+  @if (subTitle()) {
+    <span tuiSubtitle>{{ subTitle() }}</span>
+  }
+</h1>
+
+@if (description()) {
+  <p class="tui-text_body-s">
+    {{ description() }}
+  </p>
+}

@@ -4,7 +4,7 @@ import { showcasesRoutes } from '@tsaitech/showcases';
 
 export const appRoutes: Route[] = [
   {
-    path: '',
+    path: 'showcases',
     children: showcasesRoutes,
   },
 ];

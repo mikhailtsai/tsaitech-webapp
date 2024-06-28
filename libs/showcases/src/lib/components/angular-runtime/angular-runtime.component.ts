@@ -7,15 +7,22 @@ import {
   ViewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { TuiAlertService, TuiButtonModule } from '@taiga-ui/core';
+import { TuiAlertService } from '@taiga-ui/core';
 
 import { DynamicComponent } from '@tsaitech/common/tools';
-import { CodeEditorComponent } from '@tsaitech/common/ui';
+import { CodeEditorComponent, PageTitleComponent } from '@tsaitech/common/ui';
+import { TuiButtonModule, TuiTitleModule } from '@taiga-ui/experimental';
 
 @Component({
   selector: 'tsaitech-angular-runtime',
   standalone: true,
-  imports: [TuiButtonModule, CodeEditorComponent, DynamicComponent],
+  imports: [
+    TuiButtonModule,
+    CodeEditorComponent,
+    DynamicComponent,
+    PageTitleComponent,
+    TuiTitleModule,
+  ],
   templateUrl: './angular-runtime.component.html',
   styleUrl: './angular-runtime.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

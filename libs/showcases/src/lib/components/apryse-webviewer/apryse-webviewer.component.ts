@@ -2,101 +2,110 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
+  PLATFORM_ID,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import WebViewer from '@pdftron/webviewer';
-import { TuiTitleModule } from '@taiga-ui/experimental';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { PageTitleComponent } from '@tsaitech/common/ui';
 
 @Component({
   selector: 'tsaitech-apryse-webviewer',
   standalone: true,
-  imports: [CommonModule, TuiTitleModule],
+  imports: [CommonModule, PageTitleComponent],
   templateUrl: './apryse-webviewer.component.html',
   styleUrl: './apryse-webviewer.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApryseWebViewerComponent {
+  readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   @ViewChild('webViewer', { read: ViewContainerRef })
   webViewerRef!: ViewContainerRef;
 
   readonly #effect = effect(() => {
-    WebViewer.WebComponent(
-      {
-        path: '/assets/webviewer',
-        disabledElements: [
-          'toolbarGroup-Shapes',
-          'toolbarGroup-Insert',
-          'toolbarGroup-Annotate',
-          'toolbarGroup-Forms',
-          'toolbarGroup-FillAndSign',
-          'toolbarGroup-Edit',
-        ],
-      },
-      this.webViewerRef.element.nativeElement
-    ).then((instance) => {
-      const { UI, Core } = instance;
-      const { documentViewer, annotationManager, Annotations } = Core;
+    if (!this.isBrowser) return;
 
-      documentViewer.addEventListener('documentLoaded', () => {
-        console.log('Document loaded');
+    import('@pdftron/webviewer').then((WebViewer) => {
+      WebViewer.default
+        .WebComponent(
+          {
+            path: '/assets/webviewer',
+            disabledElements: [
+              'toolbarGroup-Shapes',
+              'toolbarGroup-Insert',
+              'toolbarGroup-Annotate',
+              'toolbarGroup-Forms',
+              'toolbarGroup-FillAndSign',
+              'toolbarGroup-Edit',
+            ],
+          },
+          this.webViewerRef.element.nativeElement
+        )
+        .then((instance) => {
+          const { UI, Core } = instance;
+          const { documentViewer, annotationManager, Annotations } = Core;
 
-        documentViewer.zoomTo(1);
+          documentViewer.addEventListener('documentLoaded', () => {
+            console.log('Document loaded');
 
-        const createTextAnnotation = (
-          pageNumber: number,
-          x: number,
-          y: number,
-          width: number,
-          height: number,
-          text: string
-        ) => {
-          // Создаем текстовую аннотацию
-          const annotation = new Annotations.FreeTextAnnotation();
-          annotation.PageNumber = pageNumber;
-          annotation.X = x;
-          annotation.Y = y;
-          annotation.Width = width;
-          annotation.Height = height;
-          annotation.setContents(text);
-          annotation.FontSize = '20pt';
-          annotation.FillColor = new Annotations.Color(255, 255, 255, 0); // Прозрачный фон
-          annotation.TextColor = new Annotations.Color(0, 0, 0); // Черный текст
-          annotation.StrokeThickness = 0;
-          annotation.Author = annotationManager.getCurrentUser();
-          annotation.Locked = true;
+            documentViewer.zoomTo(1);
 
-          // Добавляем аннотацию в документ
-          annotationManager.addAnnotation(annotation);
-          annotationManager.redrawAnnotation(annotation);
+            const createTextAnnotation = (
+              pageNumber: number,
+              x: number,
+              y: number,
+              width: number,
+              height: number,
+              text: string
+            ) => {
+              // Создаем текстовую аннотацию
+              const annotation = new Annotations.FreeTextAnnotation();
+              annotation.PageNumber = pageNumber;
+              annotation.X = x;
+              annotation.Y = y;
+              annotation.Width = width;
+              annotation.Height = height;
+              annotation.setContents(text);
+              annotation.FontSize = '20pt';
+              annotation.FillColor = new Annotations.Color(255, 255, 255, 0); // Прозрачный фон
+              annotation.TextColor = new Annotations.Color(0, 0, 0); // Черный текст
+              annotation.StrokeThickness = 0;
+              annotation.Author = annotationManager.getCurrentUser();
+              annotation.Locked = true;
 
-          console.log('FreeTextAnnotation created:', annotation);
-        };
+              // Добавляем аннотацию в документ
+              annotationManager.addAnnotation(annotation);
+              annotationManager.redrawAnnotation(annotation);
 
-        documentViewer.getAnnotationsLoadedPromise().then(() => {
-          console.log('Annotations loaded');
+              console.log('FreeTextAnnotation created:', annotation);
+            };
 
-          setTimeout(() => {
-            // Создаем текстовые аннотации в заранее определенных местах
-            createTextAnnotation(1, 100, 100, 200, 50, 'EDITABLE');
+            documentViewer.getAnnotationsLoadedPromise().then(() => {
+              console.log('Annotations loaded');
 
-            // Перерисовываем все аннотации на странице
-            documentViewer.refreshAll();
-            documentViewer.updateView();
+              setTimeout(() => {
+                // Создаем текстовые аннотации в заранее определенных местах
+                createTextAnnotation(1, 100, 100, 200, 50, 'EDITABLE');
 
-            // Проверяем, добавлены ли аннотации в DOM
-            setTimeout(() => {
-              const annotations = annotationManager.getAnnotationsList();
-              console.log('Annotations in DOM:', annotations);
-            }, 500);
-          }, 1000); // Задержка в 1 секунду
+                // Перерисовываем все аннотации на странице
+                documentViewer.refreshAll();
+                documentViewer.updateView();
+
+                // Проверяем, добавлены ли аннотации в DOM
+                setTimeout(() => {
+                  const annotations = annotationManager.getAnnotationsList();
+                  console.log('Annotations in DOM:', annotations);
+                }, 500);
+              }, 1000); // Задержка в 1 секунду
+            });
+          });
+
+          instance.UI.loadDocument(
+            'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf'
+          );
         });
-      });
-
-      instance.UI.loadDocument(
-        'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf'
-      );
     });
   });
 }

@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import {
-  ShowcasesComponent,
   AngularRuntimeComponent,
   ApryseWebViewerComponent,
 } from './components';
@@ -9,10 +8,15 @@ import {
 export const showcasesRoutes: Routes = [
   {
     path: '',
-    component: ApryseWebViewerComponent,
+    pathMatch: 'full',
+    redirectTo: '/',
   },
   {
     path: 'angular-runtime',
     component: AngularRuntimeComponent,
+  },
+  {
+    path: 'apryse-webviewer',
+    component: ApryseWebViewerComponent,
   },
 ];
