@@ -1,10 +1,14 @@
 import { Route } from '@angular/router';
 
-import { showcasesRoutes } from '@tsaitech/showcases';
-
 export const appRoutes: Route[] = [
   {
+    path: '',
+    loadComponent: () =>
+      import('@tsaitech/homepage').then((module) => module.HomepageComponent),
+  },
+  {
     path: 'showcases',
-    children: showcasesRoutes,
+    loadChildren: () =>
+      import('@tsaitech/showcases').then((module) => module.showcasesRoutes),
   },
 ];

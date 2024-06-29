@@ -38,6 +38,10 @@ aside.fixed {
     position: fixed;
     transition: width 0.3s ease-in-out;
     width: calc(100vw - 13.75rem);
+
+    @media @tui-mobile {
+      min-width: calc(100vw - 3rem);
+    }
   }
 
   &.full-size {
@@ -46,7 +50,7 @@ aside.fixed {
     &&&:before {
       top: 3rem;
       position: fixed;
-      width: calc(100% - 3rem);
+      width: calc(100vw - 3rem);
     }
   }
 }

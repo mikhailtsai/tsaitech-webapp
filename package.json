@@ -5,8 +5,9 @@
   "scripts": {
     "start": "npm run tsaitech:start",
     "tsaitech:start": "nx serve tsaitech",
-    "tsaitech:build": "nx build tsaitech && npm run copy-webviewer",
-    "copy-webviewer": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/apps/tsaitech/browser/assets/webviewer"
+    "tsaitech:build": "nx build tsaitech && npm run copy-index-html && npm run copy-webviewer",
+    "copy-webviewer": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/apps/tsaitech/browser/assets/webviewer",
+    "copy-index-html": "cp -a ./dist/apps/tsaitech/browser/index.csr.html ./dist/apps/tsaitech/browser/index.html"
   },
   "private": true,
   "dependencies": {

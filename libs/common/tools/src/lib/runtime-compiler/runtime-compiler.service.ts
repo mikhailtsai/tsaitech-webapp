@@ -18,7 +18,7 @@ export class RuntimeCompilerService {
     template: string,
     styles: string,
     viewContainerRef: ViewContainerRef,
-    providers: Provider[] = []
+    providers: { name: string; provide: Provider }[] = []
   ) {
     const componentType = this.createComponentType(
       componentCode,
@@ -41,17 +41,17 @@ export class RuntimeCompilerService {
     componentCode: string,
     template: string,
     styles: string,
-    providers: any[]
+    providers: { name: string; provide: Provider }[]
   ): any {
     const result = (window as any).ts.transpileModule(componentCode, {
       compilerOptions: { module: (window as any).ts.ModuleKind.ESNext },
     });
 
     const code = result.outputText;
-    const providersMap = providers.reduce(
+    const providersMap: Record<string, Provider> = providers.reduce(
       (acc, provider) => ({
         ...acc,
-        [provider.name]: provider,
+        [provider.name]: provider.provide,
       }),
       {}
     );

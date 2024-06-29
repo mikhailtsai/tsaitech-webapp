@@ -79,10 +79,10 @@ button:hover {
 
   compileAndRun() {
     this.dynamicComponent.compileAndRun(
-      this.code(), // js or typescript code
+      this.code(),
       this.template(),
-      this.styles(), // only css without preprocessing (no less/scss)
-      [TuiAlertService]
+      this.styles(),
+      [{ name: 'TuiAlertService', provide: TuiAlertService }]
     );
   }
 }

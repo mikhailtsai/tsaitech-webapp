@@ -30,7 +30,7 @@ export class DynamicComponent {
     code: string,
     template: string,
     styles: string,
-    providers: Provider[]
+    providers: { name: string; provide: Provider }[]
   ) {
     if (!code || !template) return;
 
