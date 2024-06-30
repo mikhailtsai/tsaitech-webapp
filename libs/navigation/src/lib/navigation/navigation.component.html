@@ -3,21 +3,21 @@
     appearance="secondary"
     iconLeft="tuiIconGrid"
     tuiIconButton
+    class="decorated"
     (click)="expanded.set(!expanded())"
   >Menu</button>
 
-  <button
+  <a
     class="title"
-    tuiNavigationLogo
-    tuiButton
     tuiHint
-    appearance="flat"
-    [style.max-width]="'none'"
+    tuiLink
     [routerLink]="['/']"
   >
-    <tui-icon icon="tuiIconCpu" />
-    <span>Mikhail Tsai — fullstack developer</span>
-  </button>
+    <span tuiNavigationLogo tuiFade>
+      <tui-avatar src="/wbw.svg#image" size="xs" [round]="false" />
+      <span>Mikhail Tsai — fullstack developer</span>
+    </span>
+  </a>
 
   <hr class="divider" />
 
@@ -40,6 +40,10 @@
   <tsaitech-showcases-menu [expanded]="expanded()" />
 
   <footer>
+    <div [style.width]="'100%'" [style.overflow]="'hidden'" [style.text-align]="'center'">
+      <img ngSrc="/stand-with-ukraine.svg" alt="Yes, I'm Russian. And YES. I stand with Ukraine in this dishonorable for my nation time." width="204" height="70" />
+    </div>
+
     <a
       iconLeft="https://www.vectorlogo.zone/logos/upwork/upwork-icon.svg"
       tuiButton

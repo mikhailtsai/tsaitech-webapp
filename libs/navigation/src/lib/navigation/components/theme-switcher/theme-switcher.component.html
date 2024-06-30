@@ -1,9 +1,15 @@
 <span class="theme-switcher" tuiNavigationLogo>
-  Dark theme
+  @if (dark()) {
+    <tui-icon icon="tuiIconSun" />
+  }
+  @else {
+    <tui-icon icon="tuiIconMoon" />
+  }
 
   <input
     tuiToggle
     type="checkbox"
+    [showIcons]="false"
     [(ngModel)]="dark"
   />
 </span>

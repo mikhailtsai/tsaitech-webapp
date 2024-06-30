@@ -5,6 +5,11 @@
 }
 
 header {
+  .title {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
   hr {
     width: 0;
   }
@@ -13,7 +18,7 @@ header {
 aside.fixed {
   position: fixed;
   top: 48px;
-  height: calc(100vh - 3rem);
+  height: calc(100dvh - 3rem);
 }
 
 .wrapper {
@@ -24,7 +29,7 @@ aside.fixed {
 
 .min-width-wrapper {
   @media @tui-mobile {
-    min-width: calc(100vw - 3rem);
+    min-width: calc(100vw - 6rem);
   }
 }
 
@@ -40,7 +45,7 @@ aside.fixed {
     width: calc(100vw - 13.75rem);
 
     @media @tui-mobile {
-      min-width: calc(100vw - 3rem);
+      min-width: calc(100vw - 6rem);
     }
   }
 
