@@ -4,7 +4,7 @@
   "sourceRoot": "libs/navigation/src",
   "prefix": "tsaitech",
   "projectType": "library",
-  "tags": ["navigation"],
+  "tags": ["scope:navigation"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

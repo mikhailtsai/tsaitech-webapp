@@ -9,8 +9,7 @@
     [iconRight]="showCaseSubMenu() ? 'tuiIconChevronUp' : 'tuiIconChevronDown'"
     tuiAppearance="flat"
     tuiButton
-    tuiHint
-    tuiHintAside
+    tuiHint="Various examples of strange experiments with different technologies."
     (click)="showCaseSubMenu.set(expanded() && !showCaseSubMenu())"
   >
     Showcases
@@ -20,10 +19,10 @@
 <ng-template #dropdowns>
   <tui-data-list size="s">
     @for (showcase of showcases; track showcase.path) {
-      <button
+      <a
         tuiOption
         [routerLink]="['/', 'showcases', showcase.path]"
-      >{{ showcase.name }}</button>
+      >{{ showcase.name }}</a>
     }
   </tui-data-list>
 </ng-template>

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/common/tools/src",
   "prefix": "tool",
   "projectType": "library",
-  "tags": ["tools"],
+  "tags": ["scope:common"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

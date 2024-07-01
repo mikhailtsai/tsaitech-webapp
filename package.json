@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run tsaitech:start",
+    "deploy": "npm run tsaitech:build && npm run deploy-pages",
     "tsaitech:start": "nx serve tsaitech",
     "tsaitech:build": "nx build tsaitech && npm run copy-index-html && npm run copy-webviewer",
-    "tsaitech:deploy": "npm run tsaitech:build && npm run deploy-pages",
     "copy-webviewer": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/apps/tsaitech/browser/assets/webviewer",
     "copy-index-html": "cp -a ./dist/apps/tsaitech/browser/index.csr.html ./dist/apps/tsaitech/browser/index.html",
     "deploy-pages": "cd ./dist/apps/tsaitech/browser && git init && git remote add origin git@github.com:mikhailtsai/mikhailtsai.github.io.git && git add . && git commit -m \"mikhailtsai.github.io deploy\" && git push --set-upstream origin main --force"

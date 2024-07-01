@@ -1,5 +1,3 @@
-globalThis.window = {} as any;
-
 import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
 import { provideServerRendering } from '@angular/platform-server';
 import { UNIVERSAL_PROVIDERS } from '@ng-web-apis/universal';

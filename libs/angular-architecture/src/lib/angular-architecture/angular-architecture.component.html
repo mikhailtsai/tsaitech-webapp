@@ -1,0 +1,186 @@
+<div
+  tuiCardLarge
+  tuiSurface
+  tuiAppearance="opposite"
+  class="panel"
+>
+  <div tuiCell>
+    <tui-avatar src="/angular.svg#image" />
+
+    <div tuiTitle>
+      Angular Architecture 2024
+      <div tuiSubtitle>What modern enterprise-level Angular applications consist of.</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <tui-chip>
+      <span tuiFade>Angular 18+</span>
+    </tui-chip>
+
+    <tui-chip appearance="info">
+      <span tuiFade>NX Monorepo</span>
+    </tui-chip>
+
+    <tui-chip appearance="secondary" tuiFade>
+      <span class="text-base">Module Federation</span>
+    </tui-chip>
+
+    <tui-chip appearance="outline" tuiFade>
+      <span class="text-base">NGRX</span>
+    </tui-chip>
+  </div>
+</div>
+
+<div
+  tuiCardLarge
+  tuiSurface
+  tuiAppearance="flat"
+  class="tui-space_top-6 text-max-width"
+>
+  <div tuiTitle="s">
+    NX Workspace
+    <span tuiSubtitle>
+      It will help us organize the project and control dependency relationships
+    </span>
+  </div>
+
+  <div class="tui-text_body-s">
+    <div class="text-base">To create a new project follow official NX Monorepo tutorial:</div>
+    <a
+      tuiLink
+      target="_blank"
+      href="https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial"
+    >Angular Monorepo Tutorial</a>
+  </div>
+
+  <div class="tui-text_body-s tui-space_top-4">
+    <div class="text-base">We are going to use <a
+      tuiLink
+      target="_blank"
+      href="https://nx.dev/features/enforce-module-boundaries"
+    >Enforce Module Boundaries</a> NX feature to control dependencies between modules.</div>
+  </div>
+</div>
+
+<div
+  tuiCardLarge
+  tuiSurface="elevated"
+  tuiAppearance="flat"
+  class="tui-space_top-6 text-max-width"
+>
+  <div tuiTitle="s">
+    File structure
+    <span tuiSubtitle>
+      The idea is to write isolated modules with controlled dependency reuse
+    </span>
+  </div>
+
+  <div tuiCardLarge tuiAppearance="outline">
+    <div class="tui-text_body-s" [tuiTreeController]="true">
+      <tui-tree-item>
+        <b>apps</b>
+        <tui-tree-item>
+          <b>example-app</b>
+          <tui-tree-item>
+            <b>src</b>
+            <tui-tree-item><b>app.component.ts</b>&nbsp;<span class="text-base">— has no logic, is used only for some required integrations in
+              the root component</span>
+            </tui-tree-item>
+          </tui-tree-item>
+        </tui-tree-item>
+      </tui-tree-item>
+
+      <tui-tree-item>
+        <b>libs</b>
+        <tui-tree-item><b>navigation</b>&nbsp;<span class="text-base">— if the application has a common navigation logic that is used across all
+          pages</span>
+        </tui-tree-item>
+        <tui-tree-item class="tui-space_top-4">
+          <b>common</b>&nbsp;<span class="text-base">— directory</span>
+          <tui-tree-item><b>ui</b>&nbsp;<span class="text-base">— storing&nbsp;<b>small</b>&nbsp;and reusable&nbsp;<b>components</b></span>
+          </tui-tree-item>
+          <tui-tree-item><b>tools</b>&nbsp;<span class="text-base">— storing common services, helpers, consts, models</span></tui-tree-item>
+        </tui-tree-item>
+        <tui-tree-item class="tui-space_top-4">
+          <b>accounts</b>&nbsp;<span class="text-base">— feature directory example split by 3 libraries: view, data and model</span>
+          <tui-tree-item><b>profile-view</b>&nbsp;<span class="text-base">— presentation layer of the feature</span></tui-tree-item>
+          <tui-tree-item><b>profile-data</b>&nbsp;<span class="text-base">— data layer of the feature</span></tui-tree-item>
+          <tui-tree-item><b>profile-model</b>&nbsp;<span class="text-base">— if profile-data is sharable between another modules we add this
+            library to store DI token and another models</span>
+          </tui-tree-item>
+        </tui-tree-item>
+      </tui-tree-item>
+    </div>
+  </div>
+</div>
+
+<div
+  tuiCardLarge
+  tuiSurface="elevated"
+  tuiAppearance="flat"
+  class="tui-space_top-6 text-max-width"
+>
+  <div tuiTitle="s">
+    Feature directory structure
+    <span tuiSubtitle>
+      Should I always split a feature into 3 separate libraries? No.
+    </span>
+  </div>
+
+  <div class="tui-text_body-s text-base">
+    <h3 tuiTitle="s">1 feature — 1 library:</h3>
+
+    <p class="tui-text_body-s">
+      If the feature itself is small, does not require state storage, has only presentation logic and reuse of other
+      libraries.
+    </p>
+
+    <div tuiCardLarge tuiAppearance="outline" class="tui-space_bottom-8">
+      <div class="tui-text_body-s">
+        <tui-tree-item>
+          <b>libs</b>
+          <tui-tree-item>
+            <b>some-feature</b>&nbsp;<span class="text-base">— feature library</span>
+          </tui-tree-item>
+        </tui-tree-item>
+      </div>
+    </div>
+
+    <h3 tuiTitle="s">You can use this type of feature as a route:</h3>
+
+    <div class="tui-space_top-2 tui-space_bottom-8" tuiCardLarge tuiAppearance="opposite">
+      <h4 tuiTitle="s">app.routes.ts</h4>
+      <pre class="tui-text_body-s text-base">{{ oneFeatureOneLibRoutes }}</pre>
+    </div>
+
+    <h3 tuiTitle="s">You can also use this type of feature as a component in another modules:</h3>
+
+    <div class="tui-space_top-2" tuiCardLarge tuiAppearance="opposite">
+      <h4 tuiTitle="s">some-another-feature.component.ts</h4>
+      <pre class="tui-text_body-s text-base">{{ oneFeatureOneLibComponent }}</pre>
+    </div>
+  </div>
+</div>
+
+<div
+  tuiCardLarge
+  tuiSurface="elevated"
+  tuiAppearance="flat"
+  class="tui-space_top-6 text-max-width"
+>
+  <div tuiTitle="s">
+    Set tags for each app and library
+    <span tuiSubtitle>
+      We are going to meet NX Enforce Module Boundaries
+    </span>
+  </div>
+
+  <div class="tui-text_body-s text-base">
+    <h3 tuiTitle="s">To be continued...</h3>
+
+    <p class="tui-text_body-s">
+
+    </p>
+  </div>
+</div>

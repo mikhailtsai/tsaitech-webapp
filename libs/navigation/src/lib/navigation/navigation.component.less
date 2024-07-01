@@ -2,6 +2,26 @@
 
 :host {
   overflow: hidden;
+
+  ::ng-deep {
+    a.angular {
+      &::before {
+        background-image: url("/angular.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    a.nest {
+      &::before {
+        background-image: url("/nest.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
 }
 
 header {

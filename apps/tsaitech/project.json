@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "tsaitech",
   "sourceRoot": "apps/tsaitech/src",
-  "tags": [],
+  "tags": ["scope:tsaitech"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",

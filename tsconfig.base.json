@@ -15,9 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tsaitech/homepage": ["libs/homepage/src/index.ts"],
+      "@tsaitech/angular-architecture": [
+        "libs/angular-architecture/src/index.ts"
+      ],
+      "@tsaitech/nestjs-architecture": [
+        "libs/nestjs-architecture/src/index.ts"
+      ],
       "@tsaitech/common/tools": ["libs/common/tools/src/index.ts"],
       "@tsaitech/common/ui": ["libs/common/ui/src/index.ts"],
+      "@tsaitech/homepage": ["libs/homepage/src/index.ts"],
       "@tsaitech/navigation": ["libs/navigation/src/index.ts"],
       "@tsaitech/showcases": ["libs/showcases/src/index.ts"]
     }

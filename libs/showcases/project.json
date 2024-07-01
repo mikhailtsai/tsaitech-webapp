@@ -4,7 +4,7 @@
   "sourceRoot": "libs/showcases/src",
   "prefix": "tsaitech",
   "projectType": "library",
-  "tags": ["showcases"],
+  "tags": ["scope:pages"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
