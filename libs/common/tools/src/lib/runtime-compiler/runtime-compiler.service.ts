@@ -7,18 +7,20 @@ import {
   createComponent,
   inject,
   Provider,
+  ComponentRef,
 } from '@angular/core';
 
 @Injectable()
 export class RuntimeCompilerService {
   constructor(private environmentInjector: EnvironmentInjector) {}
 
-  createComponent(
+  createComponent<C>(
     componentCode: string,
     template: string,
     styles: string,
     viewContainerRef: ViewContainerRef,
-    providers: { name: string; provide: Provider }[] = []
+    providers: { name: string; provide: Provider }[] = [],
+    onLoad?: (component: C) => void
   ) {
     const componentType = this.createComponentType(
       componentCode,
@@ -28,13 +30,20 @@ export class RuntimeCompilerService {
     );
 
     viewContainerRef.clear();
+    viewContainerRef.element.nativeElement.innerHTML = '';
 
-    const componentRef = createComponent(componentType, {
+    const componentRef: ComponentRef<any> = createComponent(componentType, {
       environmentInjector: this.environmentInjector,
       hostElement: viewContainerRef.element.nativeElement,
     });
 
-    viewContainerRef.insert(componentRef.hostView);
+    if (componentRef.instance) {
+      viewContainerRef.insert(componentRef.hostView);
+
+      if (onLoad) {
+        onLoad(componentRef.instance);
+      }
+    }
   }
 
   private createComponentType(
@@ -69,6 +78,7 @@ return ${code.substring(code.indexOf('= ') + 2)};`
     )(inject, providersMap);
 
     return Component({
+      selector: `dynamic-component-${Math.random()}`,
       template,
       styles,
       encapsulation: ViewEncapsulation.Emulated,

@@ -39,15 +39,20 @@ export class AngularRuntimeComponent {
 
   message: string = 'Hello, dynamic world!';
 
+  /**
+  * This function will be called outside when component initialized
+  */
+  initialize() {
+    this.alertService
+    .open(
+        'Dynamic component is using <strong>TuiAlertService</strong>',
+        {label: 'Dynamic component is running successfully!'}
+    )
+    .subscribe();
+  }
+
   onClick() {
     this.message = 'Button clicked!';
-
-    this.alertService
-        .open(
-            'Dynamic component is using <strong>TuiAlertService</strong>',
-            {label: 'Injectable service!'}
-        )
-        .subscribe();
   }
 }
 `);
@@ -82,7 +87,8 @@ button:hover {
       this.code(),
       this.template(),
       this.styles(),
-      [{ name: 'TuiAlertService', provide: TuiAlertService }]
+      [{ name: 'TuiAlertService', provide: TuiAlertService }],
+      (component: any) => component.initialize()
     );
   }
 }

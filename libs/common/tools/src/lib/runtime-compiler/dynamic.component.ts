@@ -26,11 +26,12 @@ export class DynamicComponent {
   @ViewChild('dynamicRoot', { read: ViewContainerRef })
   dynamicRootRef!: ViewContainerRef;
 
-  compileAndRun(
+  compileAndRun<C>(
     code: string,
     template: string,
     styles: string,
-    providers: { name: string; provide: Provider }[]
+    providers: { name: string; provide: Provider }[],
+    onLoad?: (component: C) => void
   ) {
     if (!code || !template) return;
 
@@ -39,7 +40,8 @@ export class DynamicComponent {
       template,
       styles,
       this.dynamicRootRef,
-      providers
+      providers,
+      onLoad
     );
   }
 }
