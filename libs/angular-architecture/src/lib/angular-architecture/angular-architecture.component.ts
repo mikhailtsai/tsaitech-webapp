@@ -10,7 +10,7 @@ import {
   TuiSurfaceModule,
   TuiTitleModule,
 } from '@taiga-ui/experimental';
-import { TuiHintModule, TuiLinkModule } from '@taiga-ui/core';
+import { TuiHintModule, TuiLinkModule, TuiModeModule } from '@taiga-ui/core';
 import { TuiTreeModule } from '@taiga-ui/kit';
 
 @Component({
@@ -29,6 +29,7 @@ import { TuiTreeModule } from '@taiga-ui/kit';
     TuiHintModule,
     TuiLinkModule,
     TuiTreeModule,
+    TuiModeModule,
   ],
   templateUrl: './angular-architecture.component.html',
   styleUrl: './angular-architecture.component.less',

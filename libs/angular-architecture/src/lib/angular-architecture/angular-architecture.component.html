@@ -1,20 +1,20 @@
 <div
   tuiCardLarge
   tuiSurface
-  tuiAppearance="opposite"
+  tuiAppearance="primary"
   class="panel"
 >
   <div tuiCell>
     <tui-avatar src="/angular.svg#image" />
 
-    <div tuiTitle>
+    <div tuiTitle="m">
       Angular Architecture 2024
-      <div tuiSubtitle>What modern enterprise-level Angular applications consist of.</div>
+      <div tuiSubtitle>What modern enterprise-level Angular applications consist of</div>
     </div>
   </div>
 
   <div class="chips">
-    <tui-chip>
+    <tui-chip appearance="info">
       <span tuiFade>Angular 18+</span>
     </tui-chip>
 
@@ -22,7 +22,7 @@
       <span tuiFade>NX Monorepo</span>
     </tui-chip>
 
-    <tui-chip appearance="secondary" tuiFade>
+    <tui-chip appearance="info" tuiFade>
       <span class="text-base">Module Federation</span>
     </tui-chip>
 
@@ -38,14 +38,14 @@
   tuiAppearance="flat"
   class="tui-space_top-6 text-max-width"
 >
-  <div tuiTitle="s">
+  <div tuiTitle="m">
     NX Workspace
     <span tuiSubtitle>
       It will help us organize the project and control dependency relationships
     </span>
   </div>
 
-  <div class="tui-text_body-s">
+  <div class="tui-text_body-m">
     <div class="text-base">To create a new project follow official NX Monorepo tutorial:</div>
     <a
       tuiLink
@@ -54,7 +54,7 @@
     >Angular Monorepo Tutorial</a>
   </div>
 
-  <div class="tui-text_body-s tui-space_top-4">
+  <div class="tui-text_body-m tui-space_top-4">
     <div class="text-base">We are going to use <a
       tuiLink
       target="_blank"
@@ -69,7 +69,7 @@
   tuiAppearance="flat"
   class="tui-space_top-6 text-max-width"
 >
-  <div tuiTitle="s">
+  <div tuiTitle="m">
     File structure
     <span tuiSubtitle>
       The idea is to write isolated modules with controlled dependency reuse
@@ -77,7 +77,7 @@
   </div>
 
   <div tuiCardLarge tuiAppearance="outline">
-    <div class="tui-text_body-s" [tuiTreeController]="true">
+    <div class="tui-text_body-m" [tuiTreeController]="true">
       <tui-tree-item>
         <b>apps</b>
         <tui-tree-item>
@@ -121,23 +121,23 @@
   tuiAppearance="flat"
   class="tui-space_top-6 text-max-width"
 >
-  <div tuiTitle="s">
+  <div tuiTitle="m">
     Feature directory structure
     <span tuiSubtitle>
       Should I always split a feature into 3 separate libraries? No.
     </span>
   </div>
 
-  <div class="tui-text_body-s text-base">
-    <h3 tuiTitle="s">1 feature — 1 library:</h3>
+  <div class="tui-text_body-m text-base">
+    <h3 tuiTitle="m">1 feature — 1 library:</h3>
 
-    <p class="tui-text_body-s">
+    <p class="tui-text_body-m">
       If the feature itself is small, does not require state storage, has only presentation logic and reuse of other
       libraries.
     </p>
 
     <div tuiCardLarge tuiAppearance="outline" class="tui-space_bottom-8">
-      <div class="tui-text_body-s">
+      <div class="tui-text_body-m">
         <tui-tree-item>
           <b>libs</b>
           <tui-tree-item>
@@ -151,14 +151,14 @@
 
     <div class="tui-space_top-2 tui-space_bottom-8" tuiCardLarge tuiAppearance="opposite">
       <h4 tuiTitle="s">app.routes.ts</h4>
-      <pre class="tui-text_body-s text-base">{{ oneFeatureOneLibRoutes }}</pre>
+      <pre class="tui-text_body-m text-base">{{ oneFeatureOneLibRoutes }}</pre>
     </div>
 
     <h3 tuiTitle="s">You can also use this type of feature as a component in another modules:</h3>
 
     <div class="tui-space_top-2" tuiCardLarge tuiAppearance="opposite">
       <h4 tuiTitle="s">some-another-feature.component.ts</h4>
-      <pre class="tui-text_body-s text-base">{{ oneFeatureOneLibComponent }}</pre>
+      <pre class="tui-text_body-m text-base">{{ oneFeatureOneLibComponent }}</pre>
     </div>
   </div>
 </div>
@@ -169,14 +169,14 @@
   tuiAppearance="flat"
   class="tui-space_top-6 text-max-width"
 >
-  <div tuiTitle="s">
+  <div tuiTitle="m">
     Set tags for each app and library
     <span tuiSubtitle>
       We are going to meet NX Enforce Module Boundaries
     </span>
   </div>
 
-  <div class="tui-text_body-s text-base">
+  <div class="tui-text_body-m text-base">
     <h3 tuiTitle="s">To be continued...</h3>
 
     <p class="tui-text_body-s">
